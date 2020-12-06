@@ -1,0 +1,13 @@
+g_root = /home/imsohexy/dev/reason/test1
+rule astj
+  command = /home/imsohexy/dev/reason/test1/node_modules/bs-platform/linux/bsc.exe  -warn-error +101 -bs-v 8.3.3 -bs-super-errors -no-alias-deps -color always -bs-ast -o $out $i
+o src/File.ast : astj $g_root/src/File.res
+rule deps
+  command = /home/imsohexy/dev/reason/test1/node_modules/bs-platform/linux/bsb_helper.exe -hash 278cafb67f8f04763a4cd9328c7e2c56 $in
+  restat = 1
+o src/File.d : deps src/File.ast
+rule mij
+  command = /home/imsohexy/dev/reason/test1/node_modules/bs-platform/linux/bsc.exe -I src/environments -I src/app -I src/assets -I src  -warn-error +101 -bs-super-errors -no-alias-deps -color always -bs-gentype /home/imsohexy/dev/reason/test1/node_modules/gentype/gentype.exe -bs-package-name rescript-project-template -bs-package-output es6:$in_d:.bs.js -o $out $i
+  dyndep = 1
+  restat = 1
+o src/File.cmj src/File.cmi ../../src/File.bs.js : mij src/File.ast

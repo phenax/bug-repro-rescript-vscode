@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/master/docs/docson/build-schema.json",
+  "name": "rescript-project-template",
+  "version": "0.0.1",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "bsc-flags": [ "-bs-super-errors -no-alias-deps", "-color", "always"],
+  "suffix": ".bs.js",
+  "bs-dependencies": [],
+  "warnings": {
+    "error" : "+101"
+  },
+  "gentypeconfig": {
+    "language": "typescript",
+    "module": "es6",
+    "importPath": "relative",
+    "exportInterfaces": true,
+    "debug": {
+      "all": false
+    }
+  }
+}
